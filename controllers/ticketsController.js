@@ -34,6 +34,7 @@ exports.getFreshdeskTicketDetails = async (req, res) => {
         password: 'password'
       }
     });
+    console.log(response)
     res.json(response.data);
   } catch (err) {
     res.status(500).json({ message: 'Failed to fetch ticket details check domain and api key', error: err.message });
@@ -54,6 +55,7 @@ exports.getFreshdeskTicketConversations = async (req, res) => {
         password: 'password'
       }
     });
+    // res.json(response.data)
     // Only return public replies/notes
     const publicConversations = response.data.filter(conv => conv.private === false);
     res.json(publicConversations);

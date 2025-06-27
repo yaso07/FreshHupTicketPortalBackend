@@ -6,9 +6,11 @@ const hubspotController = require('../controllers/hubspotController');
 const authMiddleware = require('../middleware/authMiddleware');
 const webhookController = require('../controllers/webhookController');
 
+//auth 
 router.post('/register', authController.register);
 router.post('/login', authController.login);
 
+// api , token updation for freshdesk and hupspot
 router.post('/freshdesk', authMiddleware, authController.updateFreshdesk);
 router.post('/hubspot', authMiddleware, authController.updateHubspot);
 
@@ -21,8 +23,11 @@ router.get('/freshdesk/contacts/:id', authMiddleware, ticketsController.getFresh
 // HubSpot contact route
 router.get('/hubspot/contact', authMiddleware, hubspotController.getHubspotContactByEmail);
 
+//webhook
 router.post('/webhook/freshdesk', webhookController.receiveFreshdeskWebhook);
 router.get('/webhook/logs', authMiddleware, webhookController.getWebhookLogs);
+
+//user details
 router.get('/user', authMiddleware, authController.getUser);
 
 module.exports = router; 

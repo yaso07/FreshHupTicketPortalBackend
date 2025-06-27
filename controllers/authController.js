@@ -65,9 +65,7 @@ exports.login = async (req, res) => {
   }
 };
 
-exports.protected = (req, res) => {
-  res.json({ message: 'This is a protected route', user: req.user });
-};
+ 
 
 exports.updateFreshdesk = async (req, res) => {
   const { apiKey:freshdeskApiKey, domain:freshdeskDomain } = req.body;
@@ -84,7 +82,7 @@ exports.updateFreshdesk = async (req, res) => {
      const response= await axios.get(url, {
         auth: {
           username: freshdeskApiKey,
-          password: 'X'
+          password: 'freshdesk'
         },
         headers: {
           Authorization: authHeader,
